@@ -22,7 +22,7 @@ body {
 
 // Hero
 .hero {
-    padding: 100px 0;
+    padding: 75px 0;
     &__container {
         max-width: 1200px;
         width: 100%;
@@ -44,17 +44,17 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    border: none;
-    background-color: var(--surface);
+    border: 1px solid var(--border-color);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: none;
     &__light {
-        fill: var(--on-surface);
+        fill: var(--on-background);
     }
     &__dark {
-        fill: var(--on-surface);
+        fill: var(--on-background);
     }
 }
 
@@ -92,7 +92,7 @@ body {
     display: flex;
     align-items: stretch;
     width: 100%;
-    box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
+    border: 1px solid var(--border-color);
     border-radius: 24px;
     &__prefix {
         display: flex;
@@ -100,6 +100,9 @@ body {
         justify-content: center;
         width: 48px;
         height: 48px;
+    }
+    &__icon {
+        fill: var(--on-background);
     }
     &__infix {
         width: 100%;
@@ -114,5 +117,7 @@ body {
         line-height: 1;
         border: none;
         outline: none;
+        background: transparent;
+        color: var(--on-background);
     }
 }

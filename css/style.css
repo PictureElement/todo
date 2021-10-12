@@ -1,18 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 :root {
-  --primary: #7c43bd;
-  --on-primary: #fff;
   --background: #fff;
   --on-background: #202124;
-  --surface: #f5f5f5;
-  --on-surface: #202124;
+  --border-color: #dadce0;
 }
 
 :root[data-theme="dark"] {
   --background: #202124;
-  --on-background: #fff;
-  --surface: #303136;
-  --on-surface: #fff;
+  --on-background: #e8eaed;
+  --border-color: #5f6368;
 }
 
 body {
@@ -35,7 +31,7 @@ body {
 }
 
 .hero {
-  padding: 100px 0;
+  padding: 75px 0;
 }
 
 .hero__container {
@@ -64,8 +60,7 @@ body {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: none;
-  background-color: var(--surface);
+  border: 1px solid var(--border-color);
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -76,14 +71,15 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  background: none;
 }
 
 .theme-toggle__light {
-  fill: var(--on-surface);
+  fill: var(--on-background);
 }
 
 .theme-toggle__dark {
-  fill: var(--on-surface);
+  fill: var(--on-background);
 }
 
 :root .theme-toggle__dark {
@@ -124,8 +120,7 @@ body {
       -ms-flex-align: stretch;
           align-items: stretch;
   width: 100%;
-  -webkit-box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
-          box-shadow: rgba(32, 33, 36, 0.28) 0px 1px 6px 0px;
+  border: 1px solid var(--border-color);
   border-radius: 24px;
 }
 
@@ -141,6 +136,10 @@ body {
           justify-content: center;
   width: 48px;
   height: 48px;
+}
+
+.input-group__icon {
+  fill: var(--on-background);
 }
 
 .input-group__infix {
@@ -161,5 +160,7 @@ body {
   line-height: 1;
   border: none;
   outline: none;
+  background: transparent;
+  color: var(--on-background);
 }
 /*# sourceMappingURL=style.css.map */
