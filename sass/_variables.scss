@@ -1,10 +1,12 @@
 :root {
-    --background: #fff;
-    --on-background: #202124;
-    --border-color: #dadce0;
+    --primary: 121, 82, 179;
+    --on-primary: 232, 234, 237;
+    --background: 255, 255, 255;
+    --on-background: 32, 33, 36;
     &[data-theme="dark"] {
-        --background: #202124;
-        --on-background: #e8eaed;
-        --border-color: #5f6368;
+        --primary: 121, 82, 179;
+        --on-primary: 232, 234, 237;
+        --background: 32, 33, 36;
+        --on-background: 232, 234, 237;
     }
 }

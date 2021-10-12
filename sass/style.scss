@@ -1,10 +1,49 @@
 @import 'variables';
+@import 'reset';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 body {
-    background-color: var(--background);
-    color: var(--on-background);
+    background-color: rgba(var(--background), 1);
+    color: rgba(var(--on-background), 1);
     font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+}
+
+.h2 {
+    font-size: 60px;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+.h3 {
+    font-size: 48px;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+.h4 {
+    font-size: 34px;
+    letter-spacing: 0.25px;
+    line-height: 1.2;
+}
+
+.h5 {
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: 1.2;
+}
+
+.h6 {
+    font-size: 20px;
+    letter-spacing: 0.15;
+    line-height: 1.2;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 // Accessible hiding
@@ -20,8 +59,13 @@ body {
     border: 0;
 }
 
+.d-none {
+    display: none !important;
+}
+
 // Hero
 .hero {
+    background-color: rgba(var(--primary), 1);
     padding: 75px 0;
     &__container {
         max-width: 1200px;
@@ -34,7 +78,7 @@ body {
         justify-content: space-between;
     }
     &__title {
-        color: var(--on-background);
+        color: rgba(var(--on-primary), 1);
         margin-bottom: 0;
     }
 }
@@ -44,17 +88,17 @@ body {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(var(--on-primary), 1);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     background: none;
     &__light {
-        fill: var(--on-background);
+        fill: rgba(var(--on-primary), 1);
     }
     &__dark {
-        fill: var(--on-background);
+        fill: rgba(var(--on-primary), 1);
     }
 }
 
@@ -75,49 +119,104 @@ body {
 }
 
 .new-task {
+    margin-top: -25px;
     &__container {
         max-width: 1200px;
         width: 100%;
         margin: 0 auto;
         padding-left: 16px;
         padding-right: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
     }
 }
 
 .input-group {
-    position: relative;
     display: flex;
-    align-items: stretch;
+    align-items: center;
     width: 100%;
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(var(--on-background), .15);
     border-radius: 24px;
+    height: 48px;
+    padding-left: 8px;
+    padding-right: 24px;
+    background: rgba(var(--background), 1);
     &__prefix {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 48px;
-        height: 48px;
+        // The following 3 properties set a fixed width
+        flex-basis: 40px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        height: 40px;
+        padding: 0;
+        margin-right: 8px;
     }
     &__icon {
-        fill: var(--on-background);
+        fill: rgba(var(--on-background), 1);
     }
     &__infix {
-        width: 100%;
-        font-weight: 400;
         display: flex;
         align-items: center;
-        padding-right: 12px;
+        width: 100%;
+        height: 100%;
     }
     &__control {
-        width: 100%;
+        padding: 0;
+        font-size: 16px;
         font-weight: 400;
         line-height: 1;
         border: none;
+        width: 100%;
+        height: 100%;
         outline: none;
         background: transparent;
-        color: var(--on-background);
+        color: rgba(var(--on-background), 1);
+    }
+}
+
+.todo-items {
+    margin-top: 48px;
+    &__container {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(var(--on-background), .15);
+    min-height: 48px;
+    height: auto;
+    padding: 16px 24px 16px 8px;
+    &:hover {
+        background: rgba(var(--on-background), .15);
+    }
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        // The following 3 properties set a fixed width
+        flex-basis: 40px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin-right: 8px;
+        background-color: transparent;
+    }
+    &__icon {
+        fill: rgba(var(--on-background), 1);
+    }
+    &__title {
+        display: flex;
+        align-items: center;
+        
     }
 }
