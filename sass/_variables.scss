@@ -8,6 +8,7 @@
     --on-primary-a15: rgba(232, 234, 237, 0.15);
     --on-background-a15: rgba(32, 33, 36, 0.15);
     --on-background-a30: rgba(32, 33, 36, 0.30);
+    --on-background-a54: rgba(32, 33, 36, 0.54);
     --primary-a30: rgba(121, 82, 179, 0.30);
     --on-primary-a30: rgba(232, 234, 237, 0.30);
     &[data-theme="dark"] {
@@ -20,6 +21,7 @@
         --on-primary-a15: rgba(232, 234, 237, 0.15);
         --on-background-a15: rgba(232, 234, 237, 0.15);
         --on-background-a30: rgba(232, 234, 237, 0.30);
+        --on-background-a54: rgba(232, 234, 237, 0.54);
         --primary-a30: rgba(121, 82, 179, 0.30);
         --on-primary-a30: rgba(232, 234, 237, 0.30);
     }

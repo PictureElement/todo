@@ -52,23 +52,20 @@ input {
     font-weight: 400;
     font-size: 16px;
     letter-spacing: 0.5px;
-}
-
-input:focus::-webkit-input-placeholder {
-    color: var(--primary);
-}
-
-input:focus:-moz-placeholder {
-    color: var(--primary);
-}
-
-input:focus::-moz-placeholder {
-    color: var(--primary);
+    &:focus {
+        box-shadow: rgba(49, 132, 253, 0.5) 0px 0px 0px 4px;
+    }
+    &::placeholder {
+        color: var(--on-background-a54);
+        font-weight: 400;
+        font-size: 16px;
+        letter-spacing: 0.5px;
+    }
 }
 
 button {
     outline: none;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    //transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     &:focus {
         box-shadow: rgba(49, 132, 253, 0.5) 0px 0px 0px 4px;
     }
@@ -142,9 +139,9 @@ button {
     border-radius: 24px;
     height: 48px;
     padding-left: 8px;
-    padding-right: 24px;
     background-color: var(--background);
     &__prefix {
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -166,7 +163,8 @@ button {
         height: 100%;
     }
     &__control {
-        padding: 0;
+        padding: 0 16px 0 0;
+        border-radius: 0 24px 24px 0;
         font-size: 16px;
         font-weight: 400;
         line-height: 1;
@@ -191,7 +189,7 @@ button {
     height: auto;
     padding: 16px 24px 16px 8px;
     &:hover {
-        background-color: var(--primary-a15);
+        background-color: var(--on-background-a15);
     }
     &__button {
         display: flex;

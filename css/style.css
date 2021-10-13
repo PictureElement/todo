@@ -9,6 +9,7 @@
   --on-primary-a15: rgba(232, 234, 237, 0.15);
   --on-background-a15: rgba(32, 33, 36, 0.15);
   --on-background-a30: rgba(32, 33, 36, 0.30);
+  --on-background-a54: rgba(32, 33, 36, 0.54);
   --primary-a30: rgba(121, 82, 179, 0.30);
   --on-primary-a30: rgba(232, 234, 237, 0.30);
 }
@@ -23,6 +24,7 @@
   --on-primary-a15: rgba(232, 234, 237, 0.15);
   --on-background-a15: rgba(232, 234, 237, 0.15);
   --on-background-a30: rgba(232, 234, 237, 0.30);
+  --on-background-a54: rgba(232, 234, 237, 0.54);
   --primary-a30: rgba(121, 82, 179, 0.30);
   --on-primary-a30: rgba(232, 234, 237, 0.30);
 }
@@ -176,24 +178,41 @@ input {
   letter-spacing: 0.5px;
 }
 
-input:focus::-webkit-input-placeholder {
-  color: var(--primary);
+input:focus {
+  -webkit-box-shadow: rgba(49, 132, 253, 0.5) 0px 0px 0px 4px;
+          box-shadow: rgba(49, 132, 253, 0.5) 0px 0px 0px 4px;
 }
 
-input:focus:-moz-placeholder {
-  color: var(--primary);
+input::-webkit-input-placeholder {
+  color: var(--on-background-a54);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.5px;
 }
 
-input:focus::-moz-placeholder {
-  color: var(--primary);
+input:-ms-input-placeholder {
+  color: var(--on-background-a54);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+input::-ms-input-placeholder {
+  color: var(--on-background-a54);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+input::placeholder {
+  color: var(--on-background-a54);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.5px;
 }
 
 button {
   outline: none;
-  -webkit-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
 }
 
 button:focus {
@@ -273,11 +292,11 @@ button:focus {
   border-radius: 24px;
   height: 48px;
   padding-left: 8px;
-  padding-right: 24px;
   background-color: var(--background);
 }
 
 .input-group__prefix {
+  border-radius: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -315,7 +334,8 @@ button:focus {
 }
 
 .input-group__control {
-  padding: 0;
+  padding: 0 16px 0 0;
+  border-radius: 0 24px 24px 0;
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
@@ -345,7 +365,7 @@ button:focus {
 }
 
 .todo-item:hover {
-  background-color: var(--primary-a15);
+  background-color: var(--on-background-a15);
 }
 
 .todo-item__button {
