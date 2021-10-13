@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo</title>
     <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/script.js"></script>
 </head>
 <body>
     <section class="hero">
@@ -28,7 +27,7 @@
                 </div>
                 <div class="input-group__infix">
                     <label for="task-input" class="input-group__label sr-only">Add a task</label>
-                    <input id="task-input" class="input-group__control" type="text" placeholder="abcd">
+                    <input id="task-input" class="input-group__control" type="text" placeholder="Add a task">
                 </div>
             </div>
             <!-- End Input group -->
@@ -75,10 +74,66 @@
             </div>
         </div>
     </section>
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+        import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyBK4i0TcyWq5tYJbvxz9RiSljUlb-NrurM",
+          authDomain: "todo-422d5.firebaseapp.com",
+          projectId: "todo-422d5",
+          storageBucket: "todo-422d5.appspot.com",
+          messagingSenderId: "590658866664",
+          appId: "1:590658866664:web:e3da1abbc7ff067c68285d",
+          measurementId: "G-E15S8BZQLL"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore();
+        const analytics = getAnalytics(app);
 
-    
+        // Read data from "tasks" collection
+        const querySnapshot = await getDocs(collection(db, "tasks"));
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data()}`);
+        });
 
+        const input = document.getElementById('task-input');
 
+        // Add data to "tasks" collection
+        const addTask = async () => {
+            try {
+                const docRef = await addDoc(collection(db, "tasks"), {
+                    text: input.value,
+                    is_active: true
+                });
 
+                console.log("Document written with ID: ", docRef.id);
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+            input.value = '';
+        }
+
+        // Add task when input loses focus
+        input.addEventListener('focusout', addTask);
+
+        input.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                addTask();
+            }
+        });
+    </script>
+
+    <!-- Main script -->
+    <script defer src="js/script.js"></script>
 </body>
 </html>
