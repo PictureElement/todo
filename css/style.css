@@ -1,16 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 :root {
-  --primary: 121, 82, 179;
-  --on-primary: 232, 234, 237;
-  --background: 255, 255, 255;
-  --on-background: 32, 33, 36;
+  --primary: rgb(121, 82, 179);
+  --on-primary: rgb(232, 234, 237);
+  --background: rgb(255, 255, 255);
+  --on-background: rgb(32, 33, 36);
+  /* Alpha values */
+  --primary-a15: rgba(121, 82, 179, 0.15);
+  --on-primary-a15: rgba(232, 234, 237, 0.15);
+  --on-background-a15: rgba(32, 33, 36, 0.15);
+  --primary-a30: rgba(121, 82, 179, 0.30);
+  --on-primary-a30: rgba(232, 234, 237, 0.30);
 }
 
 :root[data-theme="dark"] {
-  --primary: 121, 82, 179;
-  --on-primary: 232, 234, 237;
-  --background: 32, 33, 36;
-  --on-background: 232, 234, 237;
+  --primary: rgb(121, 82, 179);
+  --on-primary: rgb(232, 234, 237);
+  --background: rgb(32, 33, 36);
+  --on-background: rgb(232, 234, 237);
+  /* Alpha values */
+  --primary-a15: rgba(121, 82, 179, 0.15);
+  --on-primary-a15: rgba(232, 234, 237, 0.15);
+  --on-background-a15: rgba(232, 234, 237, 0.15);
+  --primary-a30: rgba(121, 82, 179, 0.30);
+  --on-primary-a30: rgba(232, 234, 237, 0.30);
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -68,8 +80,8 @@ table {
 }
 
 body {
-  background-color: rgba(var(--background), 1);
-  color: rgba(var(--on-background), 1);
+  background-color: var(--background);
+  color: var(--on-background);
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -130,7 +142,7 @@ body {
 }
 
 .hero {
-  background-color: rgba(var(--primary), 1);
+  background-color: var(--primary);
   padding: 75px 0;
 }
 
@@ -152,7 +164,7 @@ body {
 }
 
 .hero__title {
-  color: rgba(var(--on-primary), 1);
+  color: var(--on-primary);
   margin-bottom: 0;
 }
 
@@ -160,7 +172,7 @@ body {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid rgba(var(--on-primary), 1);
+  border: none;
   cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -174,12 +186,20 @@ body {
   background: none;
 }
 
+.theme-toggle:hover, .theme-toggle:focus {
+  background: var(--on-primary-a15);
+}
+
+.theme-toggle:active {
+  background: var(--on-primary-a30);
+}
+
 .theme-toggle__light {
-  fill: rgba(var(--on-primary), 1);
+  fill: var(--on-primary);
 }
 
 .theme-toggle__dark {
-  fill: rgba(var(--on-primary), 1);
+  fill: var(--on-primary);
 }
 
 :root .theme-toggle__dark {
@@ -214,12 +234,12 @@ body {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  border: 1px solid rgba(var(--on-background), 0.15);
+  border: 1px solid var(--on-background-a15);
   border-radius: 24px;
   height: 48px;
   padding-left: 8px;
   padding-right: 24px;
-  background: rgba(var(--background), 1);
+  background: var(--background);
 }
 
 .input-group__prefix {
@@ -245,7 +265,7 @@ body {
 }
 
 .input-group__icon {
-  fill: rgba(var(--on-background), 1);
+  fill: var(--on-background);
 }
 
 .input-group__infix {
@@ -269,7 +289,7 @@ body {
   height: 100%;
   outline: none;
   background: transparent;
-  color: rgba(var(--on-background), 1);
+  color: var(--on-background);
 }
 
 .todo-items {
@@ -291,14 +311,10 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-bottom: 1px solid rgba(var(--on-background), 0.15);
+  border-bottom: 1px solid var(--on-background-a15);
   min-height: 48px;
   height: auto;
   padding: 16px 24px 16px 8px;
-}
-
-.todo-item:hover {
-  background: rgba(var(--on-background), 0.15);
 }
 
 .todo-item__button {
@@ -327,8 +343,16 @@ body {
   background-color: transparent;
 }
 
+.todo-item__button:hover, .todo-item__button:focus {
+  background: var(--primary-a15);
+}
+
+.todo-item__button:active {
+  background: var(--primary-a30);
+}
+
 .todo-item__icon {
-  fill: rgba(var(--on-background), 1);
+  fill: var(--primary);
 }
 
 .todo-item__title {
