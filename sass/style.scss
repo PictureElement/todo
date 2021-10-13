@@ -46,6 +46,29 @@ body {
     box-sizing: border-box;
 }
 
+input {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: var(--primary);
+}
+
+input:focus:-moz-placeholder {
+    color: var(--primary);
+}
+
+input:focus::-moz-placeholder {
+    color: var(--primary);
+}
+
+button {
+    outline: none;
+}
+
 // Accessible hiding
 .sr-only {
     position: absolute;
@@ -94,7 +117,7 @@ body {
     align-items: center;
     justify-content: center;
     background-color: transparent;
-    &:hover,&:focus {
+    &:hover, &:focus {
         background-color: var(--on-primary-a15);
     }
     &:active {
