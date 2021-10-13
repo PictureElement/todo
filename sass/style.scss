@@ -86,19 +86,23 @@ button {
     display: none !important;
 }
 
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 // Hero
 .hero {
     background-color: var(--primary);
     padding: 75px 0;
     &__container {
-        max-width: 800px;
-        width: 100%;
-        margin: 0 auto;
-        padding-left: 16px;
-        padding-right: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        
     }
     &__title {
         color: var(--on-primary);
@@ -153,13 +157,6 @@ button {
 
 .new-task {
     margin-top: -25px;
-    &__container {
-        max-width: 800px;
-        width: 100%;
-        margin: 0 auto;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
 }
 
 .input-group {
@@ -209,13 +206,6 @@ button {
 
 .todo-items {
     margin-top: 48px;
-    &__container {
-        max-width: 800px;
-        width: 100%;
-        margin: 0 auto;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
 }
 
 .todo-item {

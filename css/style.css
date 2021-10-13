@@ -164,12 +164,7 @@ button {
   display: none !important;
 }
 
-.hero {
-  background-color: var(--primary);
-  padding: 75px 0;
-}
-
-.hero__container {
+.container {
   max-width: 800px;
   width: 100%;
   margin: 0 auto;
@@ -184,6 +179,11 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.hero {
+  background-color: var(--primary);
+  padding: 75px 0;
 }
 
 .hero__title {
@@ -239,14 +239,6 @@ button {
 
 .new-task {
   margin-top: -25px;
-}
-
-.new-task__container {
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 .input-group {
@@ -317,14 +309,6 @@ button {
 
 .todo-items {
   margin-top: 48px;
-}
-
-.todo-items__container {
-  max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 .todo-item {
