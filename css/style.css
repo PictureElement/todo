@@ -183,15 +183,15 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background: none;
+  background-color: transparent;
 }
 
 .theme-toggle:hover, .theme-toggle:focus {
-  background: var(--on-primary-a15);
+  background-color: var(--on-primary-a15);
 }
 
 .theme-toggle:active {
-  background: var(--on-primary-a30);
+  background-color: var(--on-primary-a30);
 }
 
 .theme-toggle__icon_light {
@@ -239,7 +239,7 @@ body {
   height: 48px;
   padding-left: 8px;
   padding-right: 24px;
-  background: var(--background);
+  background-color: var(--background);
 }
 
 .input-group__prefix {
@@ -288,7 +288,7 @@ body {
   width: 100%;
   height: 100%;
   outline: none;
-  background: transparent;
+  background-color: transparent;
   color: var(--on-background);
 }
 
@@ -315,6 +315,10 @@ body {
   min-height: 48px;
   height: auto;
   padding: 16px 24px 16px 8px;
+}
+
+.todo-item:hover {
+  background-color: var(--primary-a15);
 }
 
 .todo-item__button {
@@ -344,11 +348,11 @@ body {
 }
 
 .todo-item__button:hover, .todo-item__button:focus {
-  background: var(--primary-a15);
+  background-color: var(--primary-a15);
 }
 
 .todo-item__button:active {
-  background: var(--primary-a30);
+  background-color: var(--primary-a30);
 }
 
 .todo-item__icon {
