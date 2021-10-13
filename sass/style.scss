@@ -100,25 +100,29 @@ body {
     &:active {
         background: var(--on-primary-a30);
     }
-    &__light {
-        fill: var(--on-primary);
-    }
-    &__dark {
-        fill: var(--on-primary);
+    &__icon {
+        &_light {
+            fill: var(--on-primary);
+        }
+        &_dark {
+            fill: var(--on-primary);
+        }
     }
 }
 
 :root {
-    .theme-toggle__dark {
+    .theme-toggle__icon_dark {
         display: none;
     }
     &[data-theme="dark"] {
         .theme-toggle {
-            &__light {
-                display: none;
-            }
-            &__dark {
-                display: block;
+            &__icon {
+                &_light {
+                    display: none;
+                }
+                &_dark {
+                    display: block;
+                }
             }
         }
     }

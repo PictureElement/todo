@@ -194,23 +194,23 @@ body {
   background: var(--on-primary-a30);
 }
 
-.theme-toggle__light {
+.theme-toggle__icon_light {
   fill: var(--on-primary);
 }
 
-.theme-toggle__dark {
+.theme-toggle__icon_dark {
   fill: var(--on-primary);
 }
 
-:root .theme-toggle__dark {
+:root .theme-toggle__icon_dark {
   display: none;
 }
 
-:root[data-theme="dark"] .theme-toggle__light {
+:root[data-theme="dark"] .theme-toggle__icon_light {
   display: none;
 }
 
-:root[data-theme="dark"] .theme-toggle__dark {
+:root[data-theme="dark"] .theme-toggle__icon_dark {
   display: block;
 }
 
