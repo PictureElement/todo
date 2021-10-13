@@ -147,7 +147,7 @@ body {
 }
 
 .hero__container {
-  max-width: 1200px;
+  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   padding-left: 16px;
@@ -219,7 +219,7 @@ body {
 }
 
 .new-task__container {
-  max-width: 1200px;
+  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   padding-left: 16px;
@@ -297,7 +297,7 @@ body {
 }
 
 .todo-items__container {
-  max-width: 1200px;
+  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   padding-left: 16px;
