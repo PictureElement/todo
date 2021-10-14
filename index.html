@@ -39,7 +39,7 @@
             <div>
                 <div id="todo-items"></div>
                 <div class="filters">
-                    <div>0 tasks left</div>
+                    <div id="task-count">0 tasks left</div>
                     <div class="filters__group" role="group" aria-label="Filter options">
                         <button class="filters__button filters__button_main filters__button_active" type="button">All</button>
                         <button class="filters__button filters__button_main" type="button">Active</button>
@@ -79,8 +79,21 @@
         // Input element
         const input = document.getElementById('task-input');
 
+        // Update task count
+        function updateCount(length) {
+            const taskCountEl = document.getElementById('task-count');
+            if (length === 1) {
+                taskCountEl.innerText = '1 item left';
+            } else {
+                taskCountEl.innerText = `${length} items left`;
+            }
+        }
+
         // Update DOM w. data read from database
         function updateDOM(tasks) {
+            const activeTaskCount = tasks.filter(task => task.is_active).length;
+            updateCount(activeTaskCount);
+            
             let markup = '';
 
             tasks.forEach((item) => {
