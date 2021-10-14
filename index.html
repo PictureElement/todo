@@ -45,7 +45,7 @@
                         <button class="filters__button filters__button_main" type="button">Active</button>
                         <button class="filters__button filters__button_main" type="button">Completed</button>
                     </div>
-                    <button class="filters__button filters__button_clear" type="button">Clear completed</button>
+                    <button id="clear-completed" class="filters__button filters__button_clear" type="button">Clear completed</button>
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
-        import { getFirestore, collection, query, addDoc, getDoc, setDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js";
+        import { getFirestore, collection, query, addDoc, getDoc, setDoc, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -77,19 +77,19 @@
         const analytics = getAnalytics(app);
 
         // Input element
-        const input = document.getElementById('task-input');
+        const taskInputElement = document.getElementById('task-input');
 
         // Update task count
         function updateCount(length) {
-            const taskCountEl = document.getElementById('task-count');
+            const taskCountElement = document.getElementById('task-count');
             if (length === 1) {
-                taskCountEl.innerText = '1 item left';
+                taskCountElement.innerText = '1 item left';
             } else {
-                taskCountEl.innerText = `${length} items left`;
+                taskCountElement.innerText = `${length} items left`;
             }
         }
 
-        // Update DOM w. data read from database
+        // Update DOM w. data read from db
         function updateDOM(tasks) {
             const activeTaskCount = tasks.filter(task => task.is_active).length;
             updateCount(activeTaskCount);
@@ -99,7 +99,7 @@
             tasks.forEach((item) => {
                 markup += `
                     <article class="todo-item">
-                        <button data-id="${item.id}" class="todo-item__button" type="button">
+                        <button ${item.is_active ? '' : 'data-completed'} data-id="${item.id}" class="todo-item__button" type="button">
                             ${item.is_active ? '<svg class="todo-item__icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><g><rect fill="none" height="24" width="24"/></g><g><path d="M12,2C6.47,2,2,6.47,2,12c0,5.53,4.47,10,10,10s10-4.47,10-10C22,6.47,17.53,2,12,2z M12,20c-4.42,0-8-3.58-8-8 c0-4.42,3.58-8,8-8s8,3.58,8,8C20,16.42,16.42,20,12,20z"/></g></svg>' : '<svg class="todo-item__icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>'}
                         </button>
                         <div class="todo-item__title">
@@ -132,13 +132,11 @@
             });
         }
 
-        readTasks();
-
         // Add data to "tasks" collection
         const addTask = async () => {
             try {
                 const docRef = await addDoc(collection(db, "tasks"), {
-                    title: input.value,
+                    title: taskInputElement.value,
                     is_active: true
                 });
 
@@ -146,22 +144,23 @@
             } catch (e) {
                 console.error("Error adding document: ", e);
             }
-            input.value = '';
+            taskInputElement.value = '';
         }
 
         // Add new task when enter key is released on input element.
-        input.addEventListener('keyup', function(e) {
+        taskInputElement.addEventListener('keyup', function(e) {
             // Ignore keyup during IME composition
             if (event.isComposing || event.keyCode === 229) {
                 return;
             }
             if (e.key === 'Enter' || e.keyCode === 13) {
-                if (input.value) {
+                if (taskInputElement.value) {
                     addTask();
                 }
             }
         });
         
+        // Update task status when task button is clicked
         document.getElementById('todo-items').addEventListener('click', (e) => {
             if (e.target.classList.contains('todo-item__button')) {
                 let id = e.target.dataset.id;
@@ -169,8 +168,31 @@
             }
         });
 
+        // Clear completed tasks when "Clear completed" button is clicked
+        document.getElementById('clear-completed').addEventListener('click', (e) => {
+            clearCompleted();
+        });
+
+        // Clear completed tasks
+        const clearCompleted = () => {
+            const completedTasksButtonElements = document.querySelectorAll('button[data-completed]');
+            
+            // Array from a NodeList
+            const completedTasksIds = Array.from(completedTasksButtonElements, el => el.dataset.id);
+
+            completedTasksIds.forEach(id => {
+                deleteTask(id);
+            });
+        }
+
+        // Delete document from db
+        const deleteTask = async (id) => {
+            await deleteDoc(doc(db, "tasks", id));
+        }
+
+        // Update task status
         const updateStatus = async (id) => {
-            console.log(id);
+            // console.log(id);
             // Get a document.
             const docRef = doc(db, "tasks", id);
             const docSnap = await getDoc(docRef);
@@ -200,6 +222,8 @@
                 console.log("No such document!");
             }
         }
+
+        readTasks();
     </script>
 
     <!-- Main script -->
