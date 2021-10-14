@@ -404,6 +404,7 @@ button:focus {
 
 .todo-item__icon {
   fill: var(--primary);
+  pointer-events: none;
 }
 
 .todo-item__title {

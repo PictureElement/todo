@@ -212,6 +212,7 @@ button {
     }
     &__icon {
         fill: var(--primary);
+        pointer-events: none;
     }
     &__title {
         overflow: hidden;

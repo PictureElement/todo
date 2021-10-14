@@ -62,13 +62,13 @@
         // Your web app's Firebase configuration
         // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
-          apiKey: "AIzaSyBK4i0TcyWq5tYJbvxz9RiSljUlb-NrurM",
-          authDomain: "todo-422d5.firebaseapp.com",
-          projectId: "todo-422d5",
-          storageBucket: "todo-422d5.appspot.com",
-          messagingSenderId: "590658866664",
-          appId: "1:590658866664:web:e3da1abbc7ff067c68285d",
-          measurementId: "G-E15S8BZQLL"
+            apiKey: "AIzaSyBK4i0TcyWq5tYJbvxz9RiSljUlb-NrurM",
+            authDomain: "todo-422d5.firebaseapp.com",
+            projectId: "todo-422d5",
+            storageBucket: "todo-422d5.appspot.com",
+            messagingSenderId: "590658866664",
+            appId: "1:590658866664:web:e3da1abbc7ff067c68285d",
+            measurementId: "G-E15S8BZQLL"
         };
       
         // Initialize Firebase
@@ -137,6 +137,7 @@
             input.value = '';
         }
 
+        // Add new task when enter key is released on input element.
         input.addEventListener('keyup', function(e) {
             // Ignore keyup during IME composition
             if (event.isComposing || event.keyCode === 229) {
@@ -146,6 +147,12 @@
                 if (input.value) {
                     addTask();
                 }
+            }
+        });
+        
+        document.getElementById('todo-items').addEventListener('click', (e) => {
+            if (e.target.classList.contains('todo-item__button')) {
+                alert('checked');
             }
         });
     </script>
