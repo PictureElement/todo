@@ -54,7 +54,7 @@
     <script type="module">
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
-        import { getFirestore, collection, query, addDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js";
+        import { getFirestore, collection, query, addDoc, getDoc, setDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -86,8 +86,8 @@
             tasks.forEach((item) => {
                 markup += `
                     <article class="todo-item">
-                        <button class="todo-item__button" type="button">
-                            ${item.is_active ? '<svg class="todo-item__icon todo-item__icon_active" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><g><rect fill="none" height="24" width="24"/></g><g><path d="M12,2C6.47,2,2,6.47,2,12c0,5.53,4.47,10,10,10s10-4.47,10-10C22,6.47,17.53,2,12,2z M12,20c-4.42,0-8-3.58-8-8 c0-4.42,3.58-8,8-8s8,3.58,8,8C20,16.42,16.42,20,12,20z"/></g></svg>' : '<svg class="todo-item__icon todo-item__icon_completed" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/></svg>'}
+                        <button data-id="${item.id}" class="todo-item__button" type="button">
+                            ${item.is_active ? '<svg class="todo-item__icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><g><rect fill="none" height="24" width="24"/></g><g><path d="M12,2C6.47,2,2,6.47,2,12c0,5.53,4.47,10,10,10s10-4.47,10-10C22,6.47,17.53,2,12,2z M12,20c-4.42,0-8-3.58-8-8 c0-4.42,3.58-8,8-8s8,3.58,8,8C20,16.42,16.42,20,12,20z"/></g></svg>' : '<svg class="todo-item__icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"/></svg>'}
                         </button>
                         <div class="todo-item__title">
                             ${item.is_active ? `${item.title}` : `<span style="text-decoration:line-through;">${item.title}</span>`}
@@ -100,7 +100,6 @@
 
         // Read data from "tasks" collection
         const readTasks = () => {
-            console.log('hello');
             const q = query(collection(db, "tasks"));
             // Realtime updates
             onSnapshot(q, (querySnapshot) => {
@@ -152,9 +151,42 @@
         
         document.getElementById('todo-items').addEventListener('click', (e) => {
             if (e.target.classList.contains('todo-item__button')) {
-                alert('checked');
+                let id = e.target.dataset.id;
+                updateStatus(id);
             }
         });
+
+        const updateStatus = async (id) => {
+            console.log(id);
+            // Get a document.
+            const docRef = doc(db, "tasks", id);
+            const docSnap = await getDoc(docRef);
+
+            // Document exists
+            if (docSnap.exists()) {
+                // If task is active, set to completed
+                if (docSnap.data().is_active) {
+                    // Set a document.
+                    // Document's contents will be overwritten with the newly provided data.
+                    await setDoc(doc(db, "tasks", id), {
+                        title: docSnap.data().title,
+                        is_active: false
+                    });
+                // If task is completed, set to active
+                } else {
+                    // Set a document.
+                    // Document's contents will be overwritten with the newly provided data.
+                    await setDoc(doc(db, "tasks", id), {
+                        title: docSnap.data().title,
+                        is_active: true
+                    });
+                }
+            // Document does not exist
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+        }
     </script>
 
     <!-- Main script -->
