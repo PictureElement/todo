@@ -4,8 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 body {
-    background-color: var(--background);
-    color: var(--on-background);
+    background-color: rgba(var(--background), 1);
+    color: rgba(var(--on-background), 1);
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -52,11 +52,8 @@ input {
     font-weight: 400;
     font-size: 16px;
     letter-spacing: 0.5px;
-    &:focus {
-        box-shadow: rgba(49, 132, 253, 0.5) 0px 0px 0px 4px;
-    }
     &::placeholder {
-        color: var(--on-background-a54);
+        color: rgba(var(--on-background), var(--a45));
         font-weight: 400;
         font-size: 16px;
         letter-spacing: 0.5px;
@@ -65,17 +62,16 @@ input {
 
 button {
     outline: none;
-    //transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     &:focus {
-        box-shadow: rgba(49, 132, 253, 0.5) 0px 0px 0px 4px;
+        box-shadow: rgba(3, 206, 164, .75) 0px 0px 0px 2px;
     }
 }
 
 .hero {
-    background-color: var(--primary);
+    background-color: rgba(var(--primary), 1);
     padding: 75px 0;
     &__title {
-        color: var(--on-primary);
+        color: rgba(var(--on-primary), 1);
         margin-bottom: 0;
     }
 }
@@ -90,18 +86,19 @@ button {
     align-items: center;
     justify-content: center;
     background-color: transparent;
+    background-color: rgba(var(--on-primary), var(--a15));
     &:hover {
-        background-color: var(--on-primary-a15);
+        background-color: rgba(var(--on-primary), var(--a30));
     }
     &:active {
-        background-color: var(--on-primary-a30);
+        background-color: rgba(var(--on-primary), var(--a45));
     }
     &__icon {
         &_light {
-            fill: var(--on-primary);
+            fill: rgba(var(--on-primary), 1);
         }
         &_dark {
-            fill: var(--on-primary);
+            fill: rgba(var(--on-primary), 1);
         }
     }
 }
@@ -132,11 +129,11 @@ button {
     display: flex;
     align-items: center;
     width: 100%;
-    border: 1px solid var(--on-background-a15);
+    border: 1px solid rgba(var(--on-background), var(--a15));
     border-radius: 24px;
     height: 48px;
     padding-left: 8px;
-    background-color: var(--background);
+    background-color: rgba(var(--background), 1);
     &__prefix {
         border-radius: 50%;
         display: flex;
@@ -151,7 +148,7 @@ button {
         margin-right: 8px;
     }
     &__icon {
-        fill: var(--on-background);
+        fill: rgba(var(--on-background), 1);
     }
     &__infix {
         display: flex;
@@ -170,23 +167,23 @@ button {
         height: 100%;
         outline: none;
         background-color: transparent;
-        color: var(--on-background);
+        color: rgba(var(--on-background), 1);
     }
 }
 
 .todo-items {
-    margin-top: 32px;
+    margin-top: 48px;
 }
 
 .todo-item {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--on-background-a15);
+    border-bottom: 1px solid rgba(var(--on-background), var(--a15));
     min-height: 48px;
     height: auto;
     padding: 16px 24px 16px 8px;
-    &:hover {
-        background-color: var(--on-background-a15);
+    &:first-child {
+        border-top: 1px solid rgba(var(--on-background), var(--a15));
     }
     &__button {
         display: flex;
@@ -204,14 +201,14 @@ button {
         margin-right: 8px;
         background-color: transparent;
         &:hover {
-            background-color: var(--primary-a15);
+            background-color: rgba(var(--primary), var(--a15));
         }
         &:active {
-            background-color: var(--primary-a30);
+            background-color: rgba(var(--primary), var(--a30));
         }
     }
     &__icon {
-        fill: var(--primary);
+        fill: rgba(var(--primary), 1);
         pointer-events: none;
     }
     &__title {
@@ -222,13 +219,14 @@ button {
 }
 
 .filters {
-    margin-top: 32px;
+    border: 1px solid rgba(var(--on-background), var(--a15));
+    padding: 1rem;
+    margin-top: 48px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     &__group {
         position: relative;
-        //display: inline-flex;
         vertical-align: middle;
         .filters__button {
             position: relative;
@@ -250,12 +248,12 @@ button {
         border: 1px solid transparent;
         cursor: pointer;
         &_main {
-            color: var(--on-background);
+            color: rgba(var(--on-background), 1);
             &:hover {
-                border-color: var(--on-background-a15);
+                border-color: rgba(var(--on-background), var(--a15));
             }
             &:active {
-                border-color: var(--on-background-a30);
+                border-color: rgba(var(--on-background), var(--a30));
             }
         }
         &_clear {
@@ -269,8 +267,8 @@ button {
             }
         }
         &_active {
-            border-color: var(--on-background) !important;
-            color: var(--on-background);
+            border-color: rgba(var(--on-background), 1) !important;
+            color: rgba(var(--on-background), 1);
         }
     }
 }

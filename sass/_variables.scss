@@ -1,29 +1,18 @@
 :root {
-    --primary: rgb(121, 82, 179);
-    --on-primary: rgb(232, 234, 237);
-    --background: rgb(255, 255, 255);
-    --on-background: rgb(32, 33, 36);
+    --primary: 121, 82, 179;
+    --on-primary: 232, 234, 237;
+    --background: 255, 255, 255;
+    --on-background: 32, 33, 36;
+
     /* Alpha values */
-    --primary-a15: rgba(121, 82, 179, 0.15);
-    --on-primary-a15: rgba(232, 234, 237, 0.15);
-    --on-background-a15: rgba(32, 33, 36, 0.15);
-    --on-background-a30: rgba(32, 33, 36, 0.30);
-    --on-background-a54: rgba(32, 33, 36, 0.54);
-    --primary-a30: rgba(121, 82, 179, 0.30);
-    --on-primary-a30: rgba(232, 234, 237, 0.30);
+    --a15: 0.15;
+    --a30: 0.30;
+    --a45: 0.45;
     &[data-theme="dark"] {
-        --primary: rgb(121, 82, 179);
-        --on-primary: rgb(232, 234, 237);
-        --background: rgb(32, 33, 36);
-        --on-background: rgb(232, 234, 237);
-        /* Alpha values */
-        --primary-a15: rgba(121, 82, 179, 0.15);
-        --on-primary-a15: rgba(232, 234, 237, 0.15);
-        --on-background-a15: rgba(232, 234, 237, 0.15);
-        --on-background-a30: rgba(232, 234, 237, 0.30);
-        --on-background-a54: rgba(232, 234, 237, 0.54);
-        --primary-a30: rgba(121, 82, 179, 0.30);
-        --on-primary-a30: rgba(232, 234, 237, 0.30);
+        --primary: 121, 82, 179;
+        --on-primary: 232, 234, 237;
+        --background: 32, 33, 36;
+        --on-background: 232, 234, 237;
     }
 }
 

@@ -1,32 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 :root {
-  --primary: rgb(121, 82, 179);
-  --on-primary: rgb(232, 234, 237);
-  --background: rgb(255, 255, 255);
-  --on-background: rgb(32, 33, 36);
+  --primary: 121, 82, 179;
+  --on-primary: 232, 234, 237;
+  --background: 255, 255, 255;
+  --on-background: 32, 33, 36;
   /* Alpha values */
-  --primary-a15: rgba(121, 82, 179, 0.15);
-  --on-primary-a15: rgba(232, 234, 237, 0.15);
-  --on-background-a15: rgba(32, 33, 36, 0.15);
-  --on-background-a30: rgba(32, 33, 36, 0.30);
-  --on-background-a54: rgba(32, 33, 36, 0.54);
-  --primary-a30: rgba(121, 82, 179, 0.30);
-  --on-primary-a30: rgba(232, 234, 237, 0.30);
+  --a15: 0.15;
+  --a30: 0.30;
+  --a45: 0.45;
 }
 
 :root[data-theme="dark"] {
-  --primary: rgb(121, 82, 179);
-  --on-primary: rgb(232, 234, 237);
-  --background: rgb(32, 33, 36);
-  --on-background: rgb(232, 234, 237);
-  /* Alpha values */
-  --primary-a15: rgba(121, 82, 179, 0.15);
-  --on-primary-a15: rgba(232, 234, 237, 0.15);
-  --on-background-a15: rgba(232, 234, 237, 0.15);
-  --on-background-a30: rgba(232, 234, 237, 0.30);
-  --on-background-a54: rgba(232, 234, 237, 0.54);
-  --primary-a30: rgba(121, 82, 179, 0.30);
-  --on-primary-a30: rgba(232, 234, 237, 0.30);
+  --primary: 121, 82, 179;
+  --on-primary: 232, 234, 237;
+  --background: 32, 33, 36;
+  --on-background: 232, 234, 237;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -127,8 +115,8 @@ table {
 }
 
 body {
-  background-color: var(--background);
-  color: var(--on-background);
+  background-color: rgba(var(--background), 1);
+  color: rgba(var(--on-background), 1);
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -178,34 +166,29 @@ input {
   letter-spacing: 0.5px;
 }
 
-input:focus {
-  -webkit-box-shadow: rgba(49, 132, 253, 0.5) 0px 0px 0px 4px;
-          box-shadow: rgba(49, 132, 253, 0.5) 0px 0px 0px 4px;
-}
-
 input::-webkit-input-placeholder {
-  color: var(--on-background-a54);
+  color: rgba(var(--on-background), var(--a45));
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 0.5px;
 }
 
 input:-ms-input-placeholder {
-  color: var(--on-background-a54);
+  color: rgba(var(--on-background), var(--a45));
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 0.5px;
 }
 
 input::-ms-input-placeholder {
-  color: var(--on-background-a54);
+  color: rgba(var(--on-background), var(--a45));
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 0.5px;
 }
 
 input::placeholder {
-  color: var(--on-background-a54);
+  color: rgba(var(--on-background), var(--a45));
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 0.5px;
@@ -216,17 +199,17 @@ button {
 }
 
 button:focus {
-  -webkit-box-shadow: rgba(49, 132, 253, 0.5) 0px 0px 0px 4px;
-          box-shadow: rgba(49, 132, 253, 0.5) 0px 0px 0px 4px;
+  -webkit-box-shadow: rgba(3, 206, 164, 0.75) 0px 0px 0px 2px;
+          box-shadow: rgba(3, 206, 164, 0.75) 0px 0px 0px 2px;
 }
 
 .hero {
-  background-color: var(--primary);
+  background-color: rgba(var(--primary), 1);
   padding: 75px 0;
 }
 
 .hero__title {
-  color: var(--on-primary);
+  color: rgba(var(--on-primary), 1);
   margin-bottom: 0;
 }
 
@@ -246,22 +229,23 @@ button:focus {
       -ms-flex-pack: center;
           justify-content: center;
   background-color: transparent;
+  background-color: rgba(var(--on-primary), var(--a15));
 }
 
 .theme-toggle:hover {
-  background-color: var(--on-primary-a15);
+  background-color: rgba(var(--on-primary), var(--a30));
 }
 
 .theme-toggle:active {
-  background-color: var(--on-primary-a30);
+  background-color: rgba(var(--on-primary), var(--a45));
 }
 
 .theme-toggle__icon_light {
-  fill: var(--on-primary);
+  fill: rgba(var(--on-primary), 1);
 }
 
 .theme-toggle__icon_dark {
-  fill: var(--on-primary);
+  fill: rgba(var(--on-primary), 1);
 }
 
 :root .theme-toggle__icon_dark {
@@ -288,11 +272,11 @@ button:focus {
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  border: 1px solid var(--on-background-a15);
+  border: 1px solid rgba(var(--on-background), var(--a15));
   border-radius: 24px;
   height: 48px;
   padding-left: 8px;
-  background-color: var(--background);
+  background-color: rgba(var(--background), 1);
 }
 
 .input-group__prefix {
@@ -319,7 +303,7 @@ button:focus {
 }
 
 .input-group__icon {
-  fill: var(--on-background);
+  fill: rgba(var(--on-background), 1);
 }
 
 .input-group__infix {
@@ -344,11 +328,11 @@ button:focus {
   height: 100%;
   outline: none;
   background-color: transparent;
-  color: var(--on-background);
+  color: rgba(var(--on-background), 1);
 }
 
 .todo-items {
-  margin-top: 32px;
+  margin-top: 48px;
 }
 
 .todo-item {
@@ -358,14 +342,14 @@ button:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border-bottom: 1px solid var(--on-background-a15);
+  border-bottom: 1px solid rgba(var(--on-background), var(--a15));
   min-height: 48px;
   height: auto;
   padding: 16px 24px 16px 8px;
 }
 
-.todo-item:hover {
-  background-color: var(--on-background-a15);
+.todo-item:first-child {
+  border-top: 1px solid rgba(var(--on-background), var(--a15));
 }
 
 .todo-item__button {
@@ -395,15 +379,15 @@ button:focus {
 }
 
 .todo-item__button:hover {
-  background-color: var(--primary-a15);
+  background-color: rgba(var(--primary), var(--a15));
 }
 
 .todo-item__button:active {
-  background-color: var(--primary-a30);
+  background-color: rgba(var(--primary), var(--a30));
 }
 
 .todo-item__icon {
-  fill: var(--primary);
+  fill: rgba(var(--primary), 1);
   pointer-events: none;
 }
 
@@ -418,13 +402,14 @@ button:focus {
 }
 
 .filters {
-  margin-top: 32px;
+  border: 1px solid rgba(var(--on-background), var(--a15));
+  padding: 1rem;
+  margin-top: 48px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -459,15 +444,15 @@ button:focus {
 }
 
 .filters__button_main {
-  color: var(--on-background);
+  color: rgba(var(--on-background), 1);
 }
 
 .filters__button_main:hover {
-  border-color: var(--on-background-a15);
+  border-color: rgba(var(--on-background), var(--a15));
 }
 
 .filters__button_main:active {
-  border-color: var(--on-background-a30);
+  border-color: rgba(var(--on-background), var(--a30));
 }
 
 .filters__button_clear {
@@ -484,7 +469,7 @@ button:focus {
 }
 
 .filters__button_active {
-  border-color: var(--on-background) !important;
-  color: var(--on-background);
+  border-color: rgba(var(--on-background), 1) !important;
+  color: rgba(var(--on-background), 1);
 }
 /*# sourceMappingURL=style.css.map */
