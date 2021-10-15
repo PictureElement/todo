@@ -215,7 +215,9 @@
 
         // Clear completed tasks when "Clear completed" button is clicked
         document.getElementById('clear-completed').addEventListener('click', (e) => {
-            clearCompleted();
+            if (confirm('Clear completed tasks? This will permanently remove them.')) {
+                clearCompleted();
+            }
         });
 
         // Filter tasks
