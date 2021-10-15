@@ -81,6 +81,7 @@
 
         // There are three views (i.e. 'all', 'active', 'completed')
         let view = 'all';
+        let activeTaskCount;
 
         // Update task count
         function updateCount(length) {
@@ -94,8 +95,6 @@
 
         // Update DOM w. data read from db
         function updateDOM(tasks) {
-            const activeTaskCount = tasks.filter(task => task.is_active).length;
-            updateCount(activeTaskCount);
             
             let markup = '';
 
@@ -119,11 +118,14 @@
             const q = query(collection(db, "tasks"));
             // Realtime updates
             onSnapshot(q, (querySnapshot) => {
+                activeTaskCount = 0;
                 const tasks = [];
-
                 switch (view) {
                     case 'all':
                         querySnapshot.forEach((doc) => {
+                            if (doc.data().is_active === true) {
+                                activeTaskCount++;
+                            }
                             // 'tasks' is an array of objects
                             // each object structure is:
                             // { id: '', title: '', is_active: ''}
@@ -137,7 +139,8 @@
                         break;
                     case 'active':
                         querySnapshot.forEach((doc) => {
-                            if (doc.data().is_active) {
+                            if (doc.data().is_active === true) {
+                                activeTaskCount++;
                                 // 'tasks' is an array of objects
                                 // each object structure is:
                                 // { id: '', title: '', is_active: ''}
@@ -152,7 +155,9 @@
                         break;
                     case 'completed':
                         querySnapshot.forEach((doc) => {
-                            if (doc.data().is_active === false) {
+                            if (doc.data().is_active === true) {
+                                activeTaskCount++;
+                            } else {
                                 // 'tasks' is an array of objects
                                 // each object structure is:
                                 // { id: '', title: '', is_active: ''}
@@ -167,6 +172,7 @@
                         break;   
                 }
                 
+                updateCount(activeTaskCount);
                 updateDOM(tasks);
             });
         }
