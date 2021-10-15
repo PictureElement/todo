@@ -39,7 +39,7 @@
             <div>
                 <div class="todo-items" id="todo-items"></div>
                 <div class="filters">
-                    <div id="task-count">0 tasks left</div>
+                    <div id="filters-count" class="filters__count">0 tasks left</div>
                     <div id="filters-group" class="filters__group" role="group" aria-label="Filter options">
                         <button id="filter-all" class="filters__button filters__button_main filters__button_active" type="button">All</button>
                         <button id="filter-active" class="filters__button filters__button_main" type="button">Active</button>
@@ -85,7 +85,7 @@
 
         // Update task count
         function updateCount(length) {
-            const taskCountElement = document.getElementById('task-count');
+            const taskCountElement = document.getElementById('filters-count');
             if (length === 1) {
                 taskCountElement.innerText = '1 task left';
             } else {

@@ -220,17 +220,28 @@ button {
 
 .filters {
     border: 1px solid rgba(var(--on-background), var(--a15));
-    padding: 1rem;
-    margin-top: 48px;
+    padding: 16px;
+    margin: 48px 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    @media (max-width: 767.98px) {
+        flex-direction: column;
+    }
+    &__count {
+        white-space: nowrap;
+    }
     &__group {
         position: relative;
         vertical-align: middle;
+        display: flex;
         .filters__button {
+            margin: 0 4px;
             position: relative;
             flex: 1 1 auto;
+        }
+        @media (max-width: 767.98px) {
+            margin: 16px 0;
         }
     }
     &__button {
