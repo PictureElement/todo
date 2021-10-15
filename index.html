@@ -40,10 +40,10 @@
                 <div id="todo-items"></div>
                 <div class="filters">
                     <div id="task-count">0 tasks left</div>
-                    <div class="filters__group" role="group" aria-label="Filter options">
-                        <button class="filters__button filters__button_main filters__button_active" type="button">All</button>
-                        <button class="filters__button filters__button_main" type="button">Active</button>
-                        <button class="filters__button filters__button_main" type="button">Completed</button>
+                    <div id="filters-group" class="filters__group" role="group" aria-label="Filter options">
+                        <button id="filter-all" class="filters__button filters__button_main filters__button_active" type="button">All</button>
+                        <button id="filter-active" class="filters__button filters__button_main" type="button">Active</button>
+                        <button id="filter-completed" class="filters__button filters__button_main" type="button">Completed</button>
                     </div>
                     <button id="clear-completed" class="filters__button filters__button_clear" type="button">Clear completed</button>
                 </div>
@@ -79,13 +79,16 @@
         // Input element
         const taskInputElement = document.getElementById('task-input');
 
+        // There are three views (i.e. 'all', 'active', 'completed')
+        let view = 'all';
+
         // Update task count
         function updateCount(length) {
             const taskCountElement = document.getElementById('task-count');
             if (length === 1) {
-                taskCountElement.innerText = '1 item left';
+                taskCountElement.innerText = '1 task left';
             } else {
-                taskCountElement.innerText = `${length} items left`;
+                taskCountElement.innerText = `${length} tasks left`;
             }
         }
 
@@ -117,17 +120,53 @@
             // Realtime updates
             onSnapshot(q, (querySnapshot) => {
                 const tasks = [];
-                querySnapshot.forEach((doc) => {
-                    // 'tasks' is an array of objects
-                    // each object structure is:
-                    // { id: '', title: '', is_active: ''}
-                    tasks.push({
-                        id: doc.id,
-                        // Spread operator: pass all key:value pairs from doc.data() object
-                        // (e.g. title: 'Haircut', is_active: 'true')
-                        ...doc.data()
-                    });
-                });
+
+                switch (view) {
+                    case 'all':
+                        querySnapshot.forEach((doc) => {
+                            // 'tasks' is an array of objects
+                            // each object structure is:
+                            // { id: '', title: '', is_active: ''}
+                            tasks.push({
+                                id: doc.id,
+                                // Spread operator: pass all key:value pairs from doc.data() object
+                                // (e.g. title: 'Haircut', is_active: 'true')
+                                ...doc.data()
+                            });
+                        });
+                        break;
+                    case 'active':
+                        querySnapshot.forEach((doc) => {
+                            if (doc.data().is_active) {
+                                // 'tasks' is an array of objects
+                                // each object structure is:
+                                // { id: '', title: '', is_active: ''}
+                                tasks.push({
+                                    id: doc.id,
+                                    // Spread operator: pass all key:value pairs from doc.data() object
+                                    // (e.g. title: 'Haircut', is_active: 'true')
+                                    ...doc.data()
+                                });
+                            }
+                        });
+                        break;
+                    case 'completed':
+                        querySnapshot.forEach((doc) => {
+                            if (doc.data().is_active === false) {
+                                // 'tasks' is an array of objects
+                                // each object structure is:
+                                // { id: '', title: '', is_active: ''}
+                                tasks.push({
+                                    id: doc.id,
+                                    // Spread operator: pass all key:value pairs from doc.data() object
+                                    // (e.g. title: 'Haircut', is_active: 'true')
+                                    ...doc.data()
+                                });
+                            }
+                        });
+                        break;   
+                }
+                
                 updateDOM(tasks);
             });
         }
@@ -171,6 +210,38 @@
         // Clear completed tasks when "Clear completed" button is clicked
         document.getElementById('clear-completed').addEventListener('click', (e) => {
             clearCompleted();
+        });
+
+        // Filter tasks
+        function filter(selectedView, e) {
+            // Remove active style
+            document.querySelectorAll('.filters__button').forEach(el => {
+                el.classList.remove('filters__button_active');
+            });
+
+            // Set active style
+            e.target.classList.add('filters__button_active');
+        
+            // Set view
+            view = selectedView;
+
+            // Read tasks and update DOM
+            readTasks();
+        }
+
+        // Filter tasks when All/Active/Completed button is clicked
+        document.getElementById('filters-group').addEventListener('click', (e) => {
+            switch (e.target.id) {
+                case 'filter-all':
+                    filter('all', e)
+                    break;
+                case 'filter-active':
+                    filter('active', e);
+                    break;
+                case 'filter-completed':
+                    filter('completed', e);
+                    break;
+            }
         });
 
         // Clear completed tasks
