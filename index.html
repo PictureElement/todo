@@ -195,7 +195,7 @@
         // Add new task when enter key is released on input element.
         taskInputElement.addEventListener('keyup', function(e) {
             // Ignore keyup during IME composition
-            if (event.isComposing || event.keyCode === 229) {
+            if (e.isComposing || e.keyCode === 229) {
                 return;
             }
             if (e.key === 'Enter' || e.keyCode === 13) {
